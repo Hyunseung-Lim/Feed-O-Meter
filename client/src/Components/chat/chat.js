@@ -105,6 +105,7 @@ export const Chat = (props) => {
                                 key = {index}
                                 speaker = {chat.speaker}
                                 content = {chat.content}
+                                mode = {1}
                             />
                         ))}
                         {isDisable ? 
@@ -112,6 +113,7 @@ export const Chat = (props) => {
                                 key = {'umm'}
                                 speaker = {'student'}
                                 content = {<TypingAnimation interval={800} isDisable={isDisable} reset={isReset}/>}
+                                mode = {1}
                             />
                         :
                         null
