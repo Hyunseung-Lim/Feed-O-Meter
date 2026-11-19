@@ -1,3 +1,7 @@
 /macenv
 /windowenv
 /analysis
+.env
+*.db
+__pycache__/
+.DS_Store

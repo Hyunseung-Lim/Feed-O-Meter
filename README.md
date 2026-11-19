@@ -14,7 +14,7 @@ Feed-O-Meter/
 ## Prerequisites
 - Python 3.10+
 - Node.js 18+ (with npm)
-- OpenAI API key with access to GPT-4o / GPT-4-turbo
+- OpenAI API key with access to GPT-4o
 - macOS/Linux shell instructions below; adapt paths for Windows as needed.
 
 ## Backend Setup
@@ -29,7 +29,12 @@ Feed-O-Meter/
    Create `server/.env` (or project-level `.env`) with:
    ```
    My_OpenAI_key=sk-your-key
+   SECRET_KEY=a-long-random-string
+   JWT_SECRET_KEY=another-long-random-string
    ```
+   `SECRET_KEY` and `JWT_SECRET_KEY` are optional for local use; random values are generated at startup when they are not set. Set `DATABASE_URL` to use a database other than the default SQLite file (`server/database.db`, created on first run).
+
+   All calls to the model use GPT-4o with a temperature of 0.
 3. **Initialize the database and run the Flask server**
    ```bash
    python main.py
@@ -66,7 +71,7 @@ Feed-O-Meter/
    - When the system detects missing perspectives, it sets `questionChecker` so the student auto-asks a follow-up via `/askQuestion`.  
    - `Student` panel (mode 1 only) visualizes question vs. statement ratio (QNS), divergent vs. convergent ratio (CND), six evaluation scores, experience gauge, and the mentee’s current “thinking” text.
 3. **Idea Update**  
-   - When enough action plans accumulate, the **Update Idea** button calls `/updateIdea`, which rewrites title/problem/idea using GPT-4-turbo and the stored chat log.
+   - When enough action plans accumulate, the **Update Idea** button calls `/updateIdea`, which rewrites title/problem/idea using GPT-4o and the stored chat log.
 4. **Advance Rounds**  
    - Invoke `/nextRound` (triggered inside the UI workflow) to record a `finish` log entry and load the next preset idea.
 

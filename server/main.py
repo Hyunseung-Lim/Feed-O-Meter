@@ -544,7 +544,8 @@ This is the feedback that the student received from the mentor: {result1}
         model="gpt-4o",
         # model="gpt-3.5-turbo",
         messages=student_prompt,
-        response_format={"type": "json_object"}
+        response_format={"type": "json_object"},
+        temperature=0,
     )
     try:
         result3 = json.loads(completion3.choices[0].message.content)
@@ -764,7 +765,8 @@ The format of your question is JSON as follows:
         model="gpt-4o",
         # model="gpt-3.5-turbo",
         messages=question_prompt,
-        response_format={"type": "json_object"}
+        response_format={"type": "json_object"},
+        temperature=0,
     )
     try:
         result = json.loads(completion1.choices[0].message.content)
@@ -833,10 +835,11 @@ Response Only in JSON array, which looks like, {{'title': "", 'target_problem': 
     }]
     
     completion1 = openai.chat.completions.create(
-        model="gpt-4-turbo",
+        model="gpt-4o",
         # model="gpt-3.5-turbo",
         messages=ideaUpdatePrompt,
-        response_format={"type": "json_object"}
+        response_format={"type": "json_object"},
+        temperature=0,
     )
     try:
         result = json.loads(completion1.choices[0].message.content)
